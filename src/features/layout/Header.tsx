@@ -17,11 +17,8 @@ export const Header: React.FC = () => {
 
   return (
     <Paper noPadding>
-      <div className="grid grid-cols-2 px-4 py-2 items-center">
-        <object
-          data={darkMode ? "/tracklogo-white.svg" : "/tracklogo.svg"}
-          className="h-10 w-10"
-        />
+      <div className="grid grid-cols-2 px-8 py-3 items-center">
+        <object data="/tracklogo.svg" className="h-10 w-10" />
         <div className="flex justify-end">
           <button className="h-5 w-5 mr-4" onClick={toggleDarkMode}>
             {!darkMode ? <MoonIcon /> : <SunIcon />}

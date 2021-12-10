@@ -24,7 +24,11 @@ export const Tabs: React.FC<Props> = ({
       <li
         key={id}
         onClick={onClick}
-        className={`flex-1 flex items-center justify-center p-2 py-4 relative group opacity-80 hover:opacity-100`}
+        className={`flex-1 flex items-center justify-center p-2 py-4 relative group opacity-80 hover:opacity-100 ${
+          activeId === id
+            ? "text-indigo-600 dark:text-indigo-500"
+            : "group-hover:text-indigo-600 opacity-50 dark:group-hover:text-indigo-500 dark:group-hover:opacity-60"
+        }`}
       >
         {text}
         <div

@@ -15,7 +15,7 @@ export const Paper: React.FC<Props> = ({
   noPadding = false,
 }) => (
   <div
-    className={`bg-white dark:bg-gray-800 dark:text-white shadow-md ${
+    className={`overflow-hidden bg-white dark:bg-gray-800 dark:text-white shadow-md ${
       rounded ? "rounded-xl" : ""
     } ${noPadding ? "" : "p-6"} ${position} ${className}`}
   >
