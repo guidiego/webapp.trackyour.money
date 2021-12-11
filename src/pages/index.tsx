@@ -1,6 +1,13 @@
 import React from "react";
+import { GetServerSideProps } from "next";
 
-import TestComponent from "../components/TestComponent";
-export const Home: React.FC = () => <TestComponent />;
+export const Home: React.FC = () => null;
+
+export const getServerSideProps: GetServerSideProps = async () => ({
+  redirect: {
+    permanent: false,
+    destination: "/home",
+  },
+});
 
 export default Home;
