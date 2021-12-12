@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import GenericInterface from "./GenericInterface";
+import GenericInterface, { GenericOutput } from "./GenericInterface";
 
 import { dehydrate, QueryClient } from "react-query";
 
@@ -7,9 +7,9 @@ class AppClient {
   private axios: AxiosInstance;
   private rcQuery: QueryClient;
   apis: {
-    account: GenericInterface<Account>;
-    entry: GenericInterface<Entry>;
-    budget: GenericInterface<Any>;
+    account: GenericOutput<Account>;
+    entry: GenericOutput<Entry>;
+    budget: GenericOutput<Budget>;
   };
 
   constructor() {
@@ -21,9 +21,9 @@ class AppClient {
 
     this.rcQuery = new QueryClient();
     this.apis = {
-      account: new GenericInterface("/account", this.axios, this.rcQuery),
-      entry: new GenericInterface("/entry", this.axios, this.rcQuery),
-      budget: new GenericInterface("/budget", this.axios, this.rcQuery),
+      account: GenericInterface("/account", this.axios, this.rcQuery),
+      entry: GenericInterface("/entry", this.axios, this.rcQuery),
+      budget: GenericInterface("/budget", this.axios, this.rcQuery),
     };
   }
 

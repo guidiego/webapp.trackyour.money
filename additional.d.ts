@@ -24,3 +24,12 @@ declare type Account = {
   name: string;
   value: number;
 };
+
+declare type Budget = {
+  id: Any;
+  name: string;
+  used: number;
+  total: number;
+};
+
+declare type ResultList<T> = { results: T[] };

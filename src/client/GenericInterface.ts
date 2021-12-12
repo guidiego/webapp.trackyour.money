@@ -1,35 +1,37 @@
 import { AxiosInstance } from "axios";
 import { QueryClient, useQuery, UseQueryResult } from "react-query";
 
-export class GenericInterface<T> {
-  private path: string;
-  private client: AxiosInstance;
-  private query: QueryClient;
-
-  constructor(path: string, client: AxiosInstance, rcQuery: QueryClient) {
-    this.path = path;
-    this.client = client;
-    this.query = rcQuery;
-  }
-
-  private prepareKey(preFix: string) {
-    return `${preFix}${this.path.replace("/", "-")}`;
-  }
-
-  private async paginate(params = {}): Promise<Page<T>> {
-    return this.client.get(this.path, { params });
-  }
-
-  async prefetchPaginate(): Promise<void> {
-    await this.query.prefetchQuery(
-      this.prepareKey("paginate"),
-      this.paginate.bind(this)
-    );
-  }
-
-  queryPaginate(): UseQueryResult<Page<T>> {
-    return useQuery(this.prepareKey("paginate"), this.paginate.bind(this));
-  }
+export interface GenericOutput<T> {
+  prefetchFindAll: Promise<T[]>;
+  queryFindAll(): UseQueryResult<T[]>;
+  prefetchPaginate: Promise<Page<T>>;
+  queryPaginate(): UseQueryResult<Page<T>>;
 }
+
+export const GenericInterface = <T>(
+  path: string,
+  client: AxiosInstance,
+  rcQuery: QueryClient
+): GenericOutput<T> => {
+  const prepareKey = (preFix: string) => `${preFix}${path.replace("/", "-")}`;
+  const privateMethods = {
+    Paginate: async (params = {}): Promise<Page<T>> =>
+      client.get(`${path}/paginate`, { params }),
+    FindAll: async (params = {}): Promise<T[]> => client.get(path, { params }),
+  };
+
+  return Object.keys(privateMethods).reduce(
+    (a, c) => ({
+      ...a,
+      [`prefetch${c}`]: async () => {
+        await rcQuery.prefetchQuery(prepareKey(c), privateMethods[c]);
+      },
+      [`query${c}`]: () => {
+        return useQuery(prepareKey(c), privateMethods[c]);
+      },
+    }),
+    {}
+  ) as GenericOutput<T>;
+};
 
 export default GenericInterface;
