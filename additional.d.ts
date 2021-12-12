@@ -17,3 +17,10 @@ declare type Entry = {
   kind: "add" | "remove";
   description: string;
 };
+
+declare type Account = {
+  id: Any;
+  kind: "account" | "wallet";
+  name: string;
+  value: number;
+};

@@ -7,7 +7,7 @@ class AppClient {
   private axios: AxiosInstance;
   private rcQuery: QueryClient;
   apis: {
-    account: GenericInterface<Any>;
+    account: GenericInterface<Account>;
     entry: GenericInterface<Entry>;
     budget: GenericInterface<Any>;
   };

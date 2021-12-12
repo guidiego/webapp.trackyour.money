@@ -1,33 +1,32 @@
 import React from "react";
+import client from "~/client";
 
-import AccountItem, { Props as AccountItemProps } from "./AccountItem";
+import AccountItem, { AccountItemLoad } from "./AccountItem";
 import NewAccountModal from "./NewAccountModal";
 
-const mock = [
-  {
-    id: 1,
-    kind: "account",
-    name: "Commerzbank",
-    value: 2000,
-  },
-  {
-    id: 2,
-    kind: "wallet",
-    name: "My Wallet",
-    value: 200,
-  },
-] as (AccountItemProps & { id: number })[];
-
 export const AccountFeature: React.FC = () => {
+  const { data, isLoading } = client.apis.account.queryPaginate();
+
   return (
     <>
       <NewAccountModal />
       <ul className="p-6">
-        {mock.map(({ id, ...account }) => (
-          <li className="mb-6" key={id}>
-            <AccountItem {...account} />
-          </li>
-        ))}
+        {isLoading ? (
+          <>
+            <li className="mb-6">
+              <AccountItemLoad />
+            </li>
+            <li className="mb-6">
+              <AccountItemLoad />
+            </li>
+          </>
+        ) : (
+          data.results.map((account) => (
+            <li className="mb-6" key={account.id}>
+              <AccountItem {...account} />
+            </li>
+          ))
+        )}
       </ul>
     </>
   );

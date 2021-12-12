@@ -20,14 +20,14 @@ export class GenericInterface<T> {
     return this.client.get(this.path, { params });
   }
 
-  async prefetchPaginate() {
-    return await this.query.prefetchQuery(
+  async prefetchPaginate(): Promise<void> {
+    await this.query.prefetchQuery(
       this.prepareKey("paginate"),
       this.paginate.bind(this)
     );
   }
 
-  queryPaginate(): UseQueryResult<Page<Entry>> {
+  queryPaginate(): UseQueryResult<Page<T>> {
     return useQuery(this.prepareKey("paginate"), this.paginate.bind(this));
   }
 }

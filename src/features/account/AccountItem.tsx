@@ -3,13 +3,7 @@ import Paper from "~/components/Paper";
 
 import { CashIcon, LibraryIcon } from "@heroicons/react/outline";
 
-export type Props = {
-  kind: "account" | "wallet";
-  name: string;
-  value: number;
-};
-
-export const AccountItem: React.FC<Props> = ({ kind, name, value }) => (
+export const AccountItem: React.FC<Account> = ({ kind, name, value }) => (
   <Paper rounded noPadding>
     <div className="flex">
       <div className="h-26 w-16 bg-indigo-600 flex items-center justify-center">
@@ -23,6 +17,19 @@ export const AccountItem: React.FC<Props> = ({ kind, name, value }) => (
           R$ {value.toFixed(2)}
         </h3>
         <p className="text-xs text-gray-500 uppercase">{kind}</p>
+      </div>
+    </div>
+  </Paper>
+);
+
+export const AccountItemLoad: React.FC = () => (
+  <Paper rounded noPadding>
+    <div className="flex">
+      <div className="h-26 w-16 bg-gray-300 flex items-center justify-center" />
+      <div className="flex-1 p-6">
+        <div className="h-3 w-9/12 bg-gray-300" />
+        <div className="h-6 my-2 w-11/12 bg-indigo-600" />
+        <div className="h-2 w-2/4 bg-gray-300 uppercase" />
       </div>
     </div>
   </Paper>
