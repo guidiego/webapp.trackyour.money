@@ -13,7 +13,7 @@ const App: AppType = (props) => {
   const { Component, pageProps } = props;
   const [queryClient] = React.useState(() => new QueryClient());
 
-  if (pageProps.config.api && pageProps.config.token) {
+  if (pageProps.config && pageProps.config.api && pageProps.config.token) {
     client.setup(pageProps.config.api, pageProps.config.token);
   }
 
