@@ -3,13 +3,7 @@ import Paper from "~/components/Paper";
 
 import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/react/outline";
 
-export type Props = {
-  kind: "add" | "remove";
-  description: string;
-  value: number;
-};
-
-export const EntryItem: React.FC<Props> = ({ kind, description, value }) => (
+export const EntryItem: React.FC<Entry> = ({ kind, description, value }) => (
   <Paper noPadding rounded>
     <div className="flex items-center justify-center h-24">
       <div
@@ -28,6 +22,19 @@ export const EntryItem: React.FC<Props> = ({ kind, description, value }) => (
           R$ {value.toFixed(2)}
         </h3>
         <p className="text-xs text-gray-500">{description}</p>
+      </div>
+    </div>
+  </Paper>
+);
+
+export const EntryItemLoad: React.FC = () => (
+  <Paper noPadding rounded>
+    <div className="flex items-center justify-center h-24">
+      <div className="h-full w-16 flex justify-center items-center bg-gray-500 dark:bg-gray-400" />
+      <div className="flex-1 p-4">
+        <div className="h-4 w-full bg-gray-500 dark:bg-white mb-4" />
+        <div className="h-2 w-full bg-gray-300 mb-1" />
+        <div className="h-2 w-full bg-gray-300" />
       </div>
     </div>
   </Paper>

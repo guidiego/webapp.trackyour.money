@@ -3,10 +3,13 @@ import "../styles/global.css";
 import React from "react";
 import Head from "next/head";
 
+import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { AppType } from "next/dist/shared/lib/utils";
 
 const App: AppType = (props) => {
   const { Component, pageProps } = props;
+
+  const [queryClient] = React.useState(() => new QueryClient());
 
   return (
     <React.Fragment>
@@ -17,7 +20,11 @@ const App: AppType = (props) => {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <Component {...pageProps} />
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <Component {...pageProps} />
+        </Hydrate>
+      </QueryClientProvider>
     </React.Fragment>
   );
 };
