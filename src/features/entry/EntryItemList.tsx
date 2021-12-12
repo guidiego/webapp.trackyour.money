@@ -2,8 +2,9 @@ import React from "react";
 import Paper from "~/components/Paper";
 
 import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/react/outline";
+import client from "~/client";
 
-export const EntryItem: React.FC<Entry> = ({ kind, description, value }) => (
+const EntryItem: React.FC<Entry> = ({ kind, description, value }) => (
   <Paper noPadding rounded>
     <div className="flex items-center justify-center h-24">
       <div
@@ -27,7 +28,7 @@ export const EntryItem: React.FC<Entry> = ({ kind, description, value }) => (
   </Paper>
 );
 
-export const EntryItemLoad: React.FC = () => (
+const EntryItemLoad: React.FC = () => (
   <Paper noPadding rounded>
     <div className="flex items-center justify-center h-24">
       <div className="h-full w-16 flex justify-center items-center bg-gray-500 dark:bg-gray-400" />
@@ -40,4 +41,29 @@ export const EntryItemLoad: React.FC = () => (
   </Paper>
 );
 
-export default EntryItem;
+export const EntryItemList: React.FC = () => {
+  const { data, isLoading } = client.apis.entry.queryPaginate();
+
+  return (
+    <ul className="p-6">
+      {isLoading ? (
+        <>
+          <li className="mb-6">
+            <EntryItemLoad />
+          </li>
+          <li className="mb-6">
+            <EntryItemLoad />
+          </li>
+        </>
+      ) : (
+        data.results.map((entry) => (
+          <li key={entry.id} className="mb-6">
+            <EntryItem {...entry} />
+          </li>
+        ))
+      )}
+    </ul>
+  );
+};
+
+export default EntryItemList;
