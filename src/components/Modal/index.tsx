@@ -24,7 +24,7 @@ const ModalComponent: React.FC<ModalProps> = ({ children, open, onClose }) => {
   return (
     <div
       data-background="true"
-      className="fixed flex items-center justify-center top-0 left-0 bottom-0 w-full bg-opacity-40 bg-black"
+      className="fixed flex items-center justify-center top-0 left-0 bottom-0 w-full bg-opacity-50 dark:bg-opacity-80 bg-black"
       onClick={handleOnClose}
     >
       <Paper rounded className="m-4">

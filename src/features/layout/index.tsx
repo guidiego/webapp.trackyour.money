@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 
 import Header from "./Header";
 import BottomNavigator from "./BottomNavigator";
-import SetupModal from "./setup/Modal";
+import SetupModal from "./SetupModal";
 
 type Props = {
   withoutBottomNav?: boolean;

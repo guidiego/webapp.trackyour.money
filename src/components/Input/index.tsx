@@ -41,14 +41,14 @@ export const Input: React.FC<Props> = ({
 
   return (
     <label
-      className={`uppercase text-xs text-gray-500 font-medium mb-1 ${labelClassName}`}
+      className={`uppercase text-xs text-gray-500 dark:text-gray-300 font-medium ${labelClassName}`}
     >
       {label}
       <input
         type={inputType}
         onChange={handleOnChange}
         value={innerValue}
-        className={`text-lg text-gray-900 rounded-md shadow-md bg-white bottom-12 px-6 py-4 outline-none w-full border border-blueGray-100 border-solid ${className}`}
+        className={`text-lg text-gray-900 rounded-md shadow-md bg-white bottom-12 px-6 py-4 outline-none w-full border border-blueGray-100 border-solid mt-2 ${className}`}
       />
     </label>
   );

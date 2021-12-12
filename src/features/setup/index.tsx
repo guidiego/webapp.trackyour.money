@@ -3,18 +3,15 @@ import Button from "~/components/Button";
 import Input from "~/components/Input";
 
 import { setCookie } from "nookies";
-
-const initialForm = {
-  api: "",
-  token: "",
-};
+import { useSetup } from "./context";
 
 type Props = {
   onSuccess?: () => void;
 };
 
 export const SetupContent: React.FC<Props> = ({ onSuccess }) => {
-  const [form, setForm] = useState(initialForm);
+  const [setup, setSetup] = useSetup();
+  const [form, setForm] = useState(setup);
 
   const handleOnChange = useCallback(
     (field) => (val) => {
@@ -26,13 +23,14 @@ export const SetupContent: React.FC<Props> = ({ onSuccess }) => {
   const onSave = useCallback(() => {
     setCookie(null, "api", form.api, { path: "/" });
     setCookie(null, "token", form.token, { path: "/" });
+    setSetup(form);
 
     onSuccess && onSuccess();
   }, [form]);
 
   return (
     <form>
-      <h3 className="text-xl font-medium mb-6 mt-2 text-gray-700">
+      <h3 className="text-xl font-medium mb-6 mt-2 text-gray-700 dark:text-white">
         App Configuration
       </h3>
       <Input

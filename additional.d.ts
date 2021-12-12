@@ -32,4 +32,11 @@ declare type Budget = {
   total: number;
 };
 
+declare type Setup = {
+  api: string;
+  token: string;
+  darkMode: boolean;
+  coin: "euro" | "dollar" | "real";
+};
+
 declare type ResultList<T> = { results: T[] };

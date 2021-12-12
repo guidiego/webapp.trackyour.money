@@ -1,11 +1,13 @@
 import "../styles/global.css";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Head from "next/head";
 
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { AppType } from "next/dist/shared/lib/utils";
+
 import client from "~/client";
+import SetupProvider from "~/features/setup/context";
 
 const App: AppType = (props) => {
   const { Component, pageProps } = props;
@@ -26,7 +28,9 @@ const App: AppType = (props) => {
       </Head>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
-          <Component {...pageProps} />
+          <SetupProvider config={pageProps.config}>
+            <Component {...pageProps} />
+          </SetupProvider>
         </Hydrate>
       </QueryClientProvider>
     </React.Fragment>

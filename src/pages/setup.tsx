@@ -1,6 +1,9 @@
 import nookies from "nookies";
+
 import React, { useCallback } from "react";
-import SetupContent from "~/features/layout/setup/Content";
+import SetupContent from "~/features/setup";
+import Header from "~/features/layout/Header";
+
 import { useRouter } from "next/router";
 import { disableCache } from "~/server/disableCache";
 
@@ -11,9 +14,12 @@ export const Setup: React.FC = () => {
   }, []);
 
   return (
-    <div className="p-6">
-      <SetupContent onSuccess={onSuccess} />
-    </div>
+    <>
+      <Header />
+      <div className="p-6">
+        <SetupContent onSuccess={onSuccess} />
+      </div>
+    </>
   );
 };
 
