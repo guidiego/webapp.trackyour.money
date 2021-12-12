@@ -19,24 +19,19 @@ export const BottomNavigator: React.FC = () => {
   const BottomNavOptions = useMemo(
     () => [
       {
-        id: "home",
-        text: <HomeIcon className="h-5 w-5" />,
-        onClick: () => router.push("/home"),
+        id: "entries",
+        text: <SwitchVerticalIcon className="h-5 w-5" />,
+        onClick: () => router.push("/entries"),
       },
       {
-        id: "analyze",
+        id: "budgets",
         text: <ClipboardListIcon className="h-5 w-5" />,
-        onClick: () => router.push("/analyze"),
+        onClick: () => router.push("/budgets"),
       },
       {
         id: "accounts",
         text: <LibraryIcon className="h-5 w-5" />,
         onClick: () => router.push("/accounts"),
-      },
-      {
-        id: "entries",
-        text: <SwitchVerticalIcon className="h-5 w-5" />,
-        onClick: () => router.push("/entries"),
       },
     ],
     [router.push]
