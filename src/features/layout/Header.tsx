@@ -2,7 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import Paper from "~/components/Paper";
 import { MoonIcon, SunIcon, CogIcon } from "@heroicons/react/outline";
 
-export const Header: React.FC = () => {
+type Props = {
+  openSetupModal: () => void;
+};
+
+export const Header: React.FC<Props> = ({ openSetupModal }) => {
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = useCallback(() => {
     setDarkMode(!document.body.classList.contains("dark"));
@@ -23,7 +27,7 @@ export const Header: React.FC = () => {
           <button className="h-5 w-5 mr-4" onClick={toggleDarkMode}>
             {!darkMode ? <MoonIcon /> : <SunIcon />}
           </button>
-          <button className="h-5 w-5" onClick={toggleDarkMode}>
+          <button className="h-5 w-5" onClick={openSetupModal}>
             <CogIcon />
           </button>
         </div>

@@ -12,9 +12,12 @@ class AppClient {
     budget: GenericOutput<Budget>;
   };
 
-  constructor() {
+  setup(baseURL, token) {
     this.axios = axios.create({
-      baseURL: "http://localhost:3000/api",
+      baseURL,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     this.axios.interceptors.response.use((value) => value.data);

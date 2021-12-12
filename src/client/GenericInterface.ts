@@ -2,9 +2,9 @@ import { AxiosInstance } from "axios";
 import { QueryClient, useQuery, UseQueryResult } from "react-query";
 
 export interface GenericOutput<T> {
-  prefetchFindAll: Promise<T[]>;
-  queryFindAll(): UseQueryResult<T[]>;
-  prefetchPaginate: Promise<Page<T>>;
+  prefetchFindAll(): Promise<ResultList<T>>;
+  queryFindAll(): UseQueryResult<ResultList<T>>;
+  prefetchPaginate(): Promise<Page<T>>;
   queryPaginate(): UseQueryResult<Page<T>>;
 }
 

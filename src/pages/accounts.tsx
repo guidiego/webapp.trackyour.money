@@ -3,6 +3,7 @@ import client from "~/client";
 import AccountFeature from "~/features/account";
 
 import LayoutFeature from "~/features/layout";
+import prepareServerSideProps from "~/server/prepareServerSideProps";
 
 export const Accounts: React.FC = () => (
   <LayoutFeature>
@@ -10,9 +11,8 @@ export const Accounts: React.FC = () => (
   </LayoutFeature>
 );
 
-export const getServerSideProps = async (ctx) => {
+export const getServerSideProps = prepareServerSideProps(async () => {
   await client.apis.account.prefetchPaginate();
-  return { props: client.getDehydratedState() };
-};
+});
 
 export default Accounts;

@@ -1,15 +1,19 @@
 import "../styles/global.css";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { AppType } from "next/dist/shared/lib/utils";
+import client from "~/client";
 
 const App: AppType = (props) => {
   const { Component, pageProps } = props;
-
   const [queryClient] = React.useState(() => new QueryClient());
+
+  if (pageProps.config.api && pageProps.config.token) {
+    client.setup(pageProps.config.api, pageProps.config.token);
+  }
 
   return (
     <React.Fragment>
