@@ -2,8 +2,18 @@ import React from "react";
 import Paper from "~/components/Paper";
 
 import { CashIcon, LibraryIcon } from "@heroicons/react/outline";
+import { FormattedMessage, FormattedNumber } from "react-intl";
 
-export const AccountItem: React.FC<Account> = ({ kind, name, value }) => (
+interface Props extends Account {
+  currency: Setup["coin"];
+}
+
+export const AccountItem: React.FC<Props> = ({
+  kind,
+  name,
+  value,
+  currency,
+}) => (
   <Paper rounded noPadding>
     <div className="flex">
       <div className="h-26 w-16 bg-indigo-600 flex items-center justify-center">
@@ -14,9 +24,11 @@ export const AccountItem: React.FC<Account> = ({ kind, name, value }) => (
       <div className="flex-1 p-6">
         <h2 className="text-sm text-gray-500">{name}</h2>
         <h3 className="text-xl font-medium text-indigo-600">
-          R$ {value.toFixed(2)}
+          <FormattedNumber value={value} format={currency} />
         </h3>
-        <p className="text-xs text-gray-500 uppercase">{kind}</p>
+        <p className="text-xs text-gray-500 uppercase">
+          <FormattedMessage id={`Feature.Account.Label.${kind}`} />
+        </p>
       </div>
     </div>
   </Paper>

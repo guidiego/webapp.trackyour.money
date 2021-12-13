@@ -6,5 +6,15 @@
   "Feature.Setup.Field.Token": "Api Token",
   "Feature.Setup.Field.Lang": "Linguagem",
   "Feature.Setup.Field.Coin": "Moeda",
-  "Feature.Entry.SubHeader.Add": "Nova Entrada"
+
+  "Feature.Entry.SubHeader.Add": "Nova Entrada",
+
+  "Feature.Budget.SubHeader.Budget": "Orçamento",
+  "Feature.Budget.SubHeader.Money": "Dinheiro",
+  "Feature.Budget.Add": "Novo Orçamento",
+
+  "Feature.Account.Add": "Adicionar uma Conta",
+
+  "Feature.Account.Label.account": "Conta",
+  "Feature.Account.Label.wallet": "Carteira"
 }

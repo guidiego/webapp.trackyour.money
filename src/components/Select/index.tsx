@@ -30,7 +30,7 @@ export const Select: React.FC<Props> = ({
     {label}
     <select
       value={value}
-      className={`rounded-md shadow-md bg-white bottom-12 px-6 py-4 outline-none w-full border border-blueGray-100 border-solid disabled:opacity-30 ${className}`}
+      className={`text-md text-gray-900 rounded-md shadow-md bg-white dark:bg-gray-700 bottom-12 px-5 py-4 outline-none w-full border border-gray-100 dark:border-gray-700 dark:text-white border-solid mt-2 ${className}`}
       onChange={onChange}
     >
       {options.map(({ value, label }) => (
