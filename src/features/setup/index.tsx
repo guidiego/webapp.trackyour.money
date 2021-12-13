@@ -52,27 +52,27 @@ export const SetupContent: React.FC<Props> = ({ onSuccess }) => {
         {messages["Feature.Setup.Title"]}
       </h3>
       <Input
-        label={messages["Feature.Setup.Field.Api"]}
+        label={messages["Feature.Setup.Field.Api"] as string}
         value={form.api}
         onChange={handleOnChange("api")}
         debounceTime={100}
       />
       <Input
-        label={messages["Feature.Setup.Field.Token"]}
+        label={messages["Feature.Setup.Field.Token"] as string}
         value={form.token}
         onChange={handleOnChange("token")}
         debounceTime={100}
         labelClassName="block mt-5"
       />
       <Select
-        label={messages["Feature.Setup.Field.Lang"]}
+        label={messages["Feature.Setup.Field.Lang"] as string}
         value={form.lang}
         options={LANG_OPTS}
         onChange={handleOnChange("lang")}
         labelClassName="block mt-5"
       />
       <Select
-        label={messages["Feature.Setup.Field.Coin"]}
+        label={messages["Feature.Setup.Field.Coin"] as string}
         value={form.coin}
         options={COIN_OPTS}
         onChange={handleOnChange("coin")}
