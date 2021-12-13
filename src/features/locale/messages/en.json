@@ -1,0 +1,10 @@
+{
+  "Common.Save": "Save",
+
+  "Feature.Setup.Title": "App Configuration",
+  "Feature.Setup.Field.Api": "Api Url",
+  "Feature.Setup.Field.Token": "Api Token",
+  "Feature.Setup.Field.Lang": "Language",
+  "Feature.Setup.Field.Coin": "Currency",
+  "Feature.Entry.SubHeader.Add": "New Entry"
+}

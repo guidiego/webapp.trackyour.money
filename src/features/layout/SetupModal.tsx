@@ -4,7 +4,7 @@ import SetupContent from "../setup";
 
 export const SetupModal: React.FC<ModalProps> = ({ open, onClose }) => (
   <Modal open={open} onClose={onClose}>
-    <SetupContent />
+    <SetupContent onSuccess={onClose} />
   </Modal>
 );
 

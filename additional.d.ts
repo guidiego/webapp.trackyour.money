@@ -37,6 +37,7 @@ declare type Setup = {
   token: string;
   darkMode: boolean;
   coin: "euro" | "dollar" | "real";
+  lang: string;
 };
 
 declare type ResultList<T> = { results: T[] };

@@ -48,7 +48,7 @@ export const Input: React.FC<Props> = ({
         type={inputType}
         onChange={handleOnChange}
         value={innerValue}
-        className={`text-lg text-gray-900 rounded-md shadow-md bg-white bottom-12 px-6 py-4 outline-none w-full border border-blueGray-100 border-solid mt-2 ${className}`}
+        className={`text-md text-gray-900 rounded-md shadow-md bg-white bottom-12 px-6 py-4 outline-none w-full border border-blueGray-100 border-solid mt-2 ${className}`}
       />
     </label>
   );

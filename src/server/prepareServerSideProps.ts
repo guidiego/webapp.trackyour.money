@@ -26,7 +26,8 @@ export const prepareServerSideProps = (cb) => async (ctx) => {
         api: cookies.api,
         token: cookies.token,
         darkMode: cookies.darkMode === "true",
-        coin: cookies.coin || "euro",
+        coin: cookies.coin || "EUR",
+        lang: cookies.lang || null,
       },
     },
   };

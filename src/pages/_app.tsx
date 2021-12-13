@@ -8,6 +8,7 @@ import { AppType } from "next/dist/shared/lib/utils";
 
 import client from "~/client";
 import SetupProvider from "~/features/setup/context";
+import LocaleProvider from "~/features/locale";
 
 const App: AppType = (props) => {
   const { Component, pageProps } = props;
@@ -106,7 +107,9 @@ const App: AppType = (props) => {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <SetupProvider config={pageProps.config}>
-            <Component {...pageProps} />
+            <LocaleProvider>
+              <Component {...pageProps} />
+            </LocaleProvider>
           </SetupProvider>
         </Hydrate>
       </QueryClientProvider>

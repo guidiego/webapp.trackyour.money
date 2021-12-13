@@ -1,10 +1,16 @@
 import React from "react";
 import Paper from "~/components/Paper";
-
-import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/react/outline";
 import client from "~/client";
 
-const EntryItem: React.FC<Entry> = ({ kind, description, value }) => (
+import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/react/outline";
+import { FormattedNumber } from "react-intl";
+import { useSetup } from "../setup/context";
+
+interface Props extends Entry {
+  currency: Setup["coin"];
+}
+
+const EntryItem: React.FC<Props> = ({ kind, description, value, currency }) => (
   <Paper noPadding rounded>
     <div className="flex items-center justify-center h-24">
       <div
@@ -20,7 +26,7 @@ const EntryItem: React.FC<Entry> = ({ kind, description, value }) => (
       </div>
       <div className="flex-1 p-4">
         <h3 className="text-xl font-medium text-gray-800 dark:text-gray-50 mb-1">
-          R$ {value.toFixed(2)}
+          <FormattedNumber value={value} format={currency} />
         </h3>
         <p className="text-xs text-gray-500">{description}</p>
       </div>
@@ -43,6 +49,7 @@ const EntryItemLoad: React.FC = () => (
 
 export const EntryItemList: React.FC = () => {
   const { data, isLoading } = client.apis.entry.queryPaginate();
+  const [setup] = useSetup();
 
   return (
     <ul className="p-6">
@@ -58,7 +65,7 @@ export const EntryItemList: React.FC = () => {
       ) : (
         data.results.map((entry) => (
           <li key={entry.id} className="mb-6">
-            <EntryItem {...entry} />
+            <EntryItem {...entry} currency={setup.coin} />
           </li>
         ))
       )}
